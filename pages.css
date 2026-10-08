@@ -1,0 +1,17 @@
+/* Support, privacy and 404. Loaded after home.css. */
+.page { max-width: 720px; margin: 0 auto; padding: 140px var(--gutter) 100px; }
+.page h1 { font-size: clamp(48px, 8vw, 88px); line-height: .95; font-weight: 320; font-variation-settings: "opsz" 72; margin-bottom: 18px; }
+.page h1 em { font-weight: 300; color: var(--ink-2); }
+.page .sub { color: var(--muted); font-size: 18px; margin: 0 0 56px; }
+.page h2 { font-size: clamp(26px, 3vw, 32px); line-height: 1.15; letter-spacing: -.015em; margin: 52px 0 12px; font-variation-settings: "opsz" 36; font-weight: 400; }
+.page p, .page li { color: var(--ink-2); }
+.page ul { padding-left: 1.2em; }
+.page li { margin-bottom: 6px; }
+.page a { color: var(--blue-ink); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.page .card { background: #fff; border-radius: 20px; padding: 26px 28px; box-shadow: 0 0 0 1px rgba(0,0,0,.05), 0 24px 50px -32px rgba(20,20,30,.3); margin: 0 0 20px; }
+.page .card h2 { margin-top: 0; }
+.page .styles-list { columns: 2; column-gap: 28px; list-style: none; padding: 0; }
+.page .styles-list li { break-inside: avoid; }
+.page .lost { text-align: center; padding-top: 30vh; }
+.page .lost .actions { margin-top: 30px; }
+@media (max-width: 560px) { .page .styles-list { columns: 1; } }
