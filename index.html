@@ -4,171 +4,260 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>EssayKraft: the writing app for students</title>
 <meta name="description" content="EssayKraft is the writing app for students on Mac and iPad. Real pages, citations that format themselves in sixteen styles, and a private record that proves the work is yours. One purchase. No subscription.">
-<meta name="theme-color" content="#fbfbf9"><link rel="canonical" href="https://essaykraft.app/">
+<meta name="theme-color" content="#f1f0ec"><link rel="canonical" href="https://essaykraft.app/">
 <meta property="og:type" content="website"><meta property="og:title" content="EssayKraft: the writing app for students"><meta property="og:description" content="Real pages, citations that format themselves, and proof the work is yours. For Mac and iPad."><meta property="og:url" content="https://essaykraft.app/"><meta property="og:image" content="https://essaykraft.app/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="favicon.png" type="image/png"><link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap" rel="stylesheet">
-<script>document.documentElement.className = "js";</script>
-<link rel="stylesheet" href="home.css?v=1"><script src="site.js?v=1" defer></script>
+<script>document.documentElement.className = "js"; try { if (localStorage.getItem("ek-midnight") === "1") document.documentElement.dataset.midnight = ""; } catch (e) {}</script>
+<link rel="stylesheet" href="home.css?v=3"><script src="site.js?v=3" defer></script>
 </head>
 <body>
 <svg class="sprite" width="0" height="0" aria-hidden="true" focusable="false"><defs>
-  <symbol id="i-hash" viewBox="0 0 24 24"><path d="M9.5 4 8 20M16 4l-1.5 16M4.5 9h16M3.5 15h16"/></symbol>
-  <symbol id="i-note" viewBox="0 0 24 24"><path d="M5 4.5h14v15H5zM8.5 15.5h7M8.5 12.5h4"/><path d="M15.5 5.5v3"/></symbol>
-  <symbol id="i-template" viewBox="0 0 24 24"><rect x="4.5" y="3.5" width="15" height="17" rx="2"/><path d="M8 8h8M8 11.5h8M8 15h4.5"/></symbol>
-  <symbol id="i-focus" viewBox="0 0 24 24"><path d="M4 8.5V4h4.5M15.5 4H20v4.5M20 15.5V20h-4.5M8.5 20H4v-4.5"/></symbol>
-  <symbol id="i-export" viewBox="0 0 24 24"><path d="M12 14.5V3.5M7.5 8 12 3.5 16.5 8M5 12.5v7h14v-7"/></symbol>
-  <symbol id="i-import" viewBox="0 0 24 24"><path d="M12 3.5v11M7.5 10l4.5 4.5 4.5-4.5M5 12.5v7h14v-7"/></symbol>
-  <symbol id="i-title" viewBox="0 0 24 24"><rect x="4.5" y="3.5" width="15" height="17" rx="2"/><path d="M8.5 9h7M10 12h4"/></symbol>
+  <symbol id="i-apple" viewBox="0 0 24 24"><path d="M16.4 12.6c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.9-3.5.9-.7 0-1.9-.9-3.1-.8-1.6 0-3 .9-3.8 2.3-1.6 2.8-.4 7 1.2 9.2.8 1.1 1.7 2.4 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3.1.7c1.3 0 2.1-1.1 2.8-2.3.9-1.3 1.3-2.5 1.3-2.6 0 0-2.5-1-2.5-3.7zM14.2 5.8c.6-.8 1.1-1.9 1-3-.9 0-2.1.6-2.7 1.4-.6.7-1.1 1.8-1 2.8 1 .1 2.1-.5 2.7-1.2z"/></symbol>
   <symbol id="i-moon" viewBox="0 0 24 24"><path d="M19.5 14.5A8 8 0 0 1 9.5 4.5a8 8 0 1 0 10 10z"/></symbol>
-  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4.5 12h14M13 6.5l5.5 5.5-5.5 5.5"/></symbol>
-  <symbol id="i-apple" viewBox="0 0 24 24"><path class="f" d="M16.4 12.6c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.9-3.5.9-.7 0-1.9-.9-3.1-.8-1.6 0-3 .9-3.8 2.3-1.6 2.8-.4 7 1.2 9.2.8 1.1 1.7 2.4 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3.1.7c1.3 0 2.1-1.1 2.8-2.3.9-1.3 1.3-2.5 1.3-2.6 0 0-2.5-1-2.5-3.7zM14.2 5.8c.6-.8 1.1-1.9 1-3-.9 0-2.1.6-2.7 1.4-.6.7-1.1 1.8-1 2.8 1 .1 2.1-.5 2.7-1.2z"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M6.5 12.5l3.6 3.6 7.4-8.2"/></symbol>
 </defs></svg>
 <a class="skip" href="#main">Skip to content</a>
 
 <header class="bar">
-  <a class="brand" href="./" aria-label="EssayKraft home"><img src="icon.png" width="28" height="28" alt=""><span>EssayKraft</span></a>
+  <a class="brand" href="./" aria-label="EssayKraft home"><img src="icon.png" width="26" height="26" alt=""><span>EssayKraft</span></a>
   <nav aria-label="Site">
+    <a href="#index">Index</a>
     <a href="support.html">Support</a>
     <a class="pill" href="https://apps.apple.com/app/id6789774290">App Store</a>
   </nav>
 </header>
 
+<div class="dock" aria-label="Reading position">
+  <span class="where" aria-live="polite"><span data-where>Title page</span></span>
+  <button type="button" class="midnight" aria-pressed="false" data-midnight-toggle><svg aria-hidden="true"><use href="#i-moon"/></svg><span>Midnight</span></button>
+</div>
+
 <main id="main">
-  <section class="hero" aria-labelledby="title">
-    <p class="eyebrow rise" style="--d:0">For Mac and iPad</p>
-    <h1 id="title" class="wordmark" aria-label="EssayKraft"><span class="letters" aria-hidden="true">EssayKraft</span><span class="caret" aria-hidden="true"></span></h1>
-    <p class="lede rise" style="--d:5">The writing app for students.</p>
-    <div class="actions rise" style="--d:6">
-      <a class="button dark" href="https://apps.apple.com/app/id6789774290"><svg class="glyph"><use href="#i-apple"/></svg>Download on the App Store</a>
-      <a class="button ghost" href="#pages">See how it works</a>
+  <!-- Title page -->
+  <section class="desk" id="top" data-page="Title page" aria-labelledby="title">
+    <div class="stack">
+    <article class="sheet title-sheet">
+      <div class="running"><span>EssayKraft</span><span>Mac and iPad</span></div>
+      <div class="title-block">
+        <h1 id="title" class="wordmark" aria-label="EssayKraft"><span class="letters" aria-hidden="true">EssayKraft</span><span class="caret" aria-hidden="true"></span></h1>
+        <p class="subtitle rise" style="--d:5">The writing app for students.</p>
+        <p class="byline rise" style="--d:6">Submitted for your consideration<br>by Noah Page, 2026</p>
+        <div class="actions rise" style="--d:7">
+          <a class="button" href="https://apps.apple.com/app/id6789774290"><svg class="glyph"><use href="#i-apple"/></svg>Download on the App Store</a>
+        </div>
+      </div>
+      <div class="abstract reveal" data-page="Abstract">
+        <h2 class="small-head">Abstract</h2>
+        <p>EssayKraft is a writing app for students. It gives you real pages, formats your citations as you write, and keeps a private record that proves the work is yours. Everything else stays out of the way.</p>
+        <p class="keywords"><i>Keywords:</i> essays, citations, authorship, Mac, iPad</p>
+      </div>
+      <span class="folio">i</span>
+    </article>
     </div>
-    <p class="fine rise" style="--d:7">One purchase. No subscription. macOS and iPadOS 26.</p>
   </section>
 
-  <section class="showcase" id="pages" aria-labelledby="pages-title">
-    <h2 id="pages-title" class="reveal">Real pages.<br><em>Exactly what you hand in.</em></h2>
-    <figure class="device grow">
-      <img src="media/editor.jpg" srcset="media/editor-small.jpg 1200w, media/editor.jpg 2400w" sizes="(max-width: 1100px) 94vw, 1080px" width="2400" height="1472" alt="An essay open in EssayKraft on iPad, with a highlighted inline citation on the page">
+  <!-- 1 -->
+  <section class="chapter" id="pages" data-page="1. Real pages" aria-labelledby="pages-title">
+    <span class="num" aria-hidden="true">1</span>
+    <div class="text">
+      <h2 id="pages-title" class="lines">Real pages.</h2>
+      <p class="reveal">What you see is what you hand in.<sup class="note-ref">1</sup></p>
+    </div>
+    <aside class="sidenote reveal"><sup>1</sup> Title pages, headers, footers, page numbers and footnotes, all set up per document.</aside>
+    <figure class="fig wide">
+      <div class="device grow"><img src="media/editor.jpg" srcset="media/editor-small.jpg 1200w, media/editor.jpg 2400w" sizes="(max-width: 1100px) 94vw, 1080px" width="2400" height="1472" alt="An essay open in EssayKraft on iPad, with a highlighted inline citation on the page"></div>
+      <figcaption class="reveal"><b>Figure 1.</b> An essay on iPad, mid-argument.</figcaption>
     </figure>
   </section>
 
-  <section class="feature" id="citations" aria-labelledby="cite-title">
-    <div class="head reveal">
-      <p class="mark"><sup>1</sup> Citations</p>
-      <h2 id="cite-title">Citations that<br><em>format themselves.</em></h2>
-      <p>Sixteen styles. Switch any time and every citation follows.</p>
+  <!-- 2 -->
+  <section class="chapter" id="citations" data-page="2. Citations" aria-labelledby="cite-title">
+    <span class="num" aria-hidden="true">2</span>
+    <div class="text">
+      <h2 id="cite-title" class="lines">Citations that<br>format <em>themselves.</em></h2>
+      <p class="reveal">Sixteen styles. Change your mind the night before and every citation follows.<sup class="note-ref">2</sup></p>
     </div>
-    <div class="cite-model reveal" data-model="cite">
-      <div class="styles" role="group" aria-label="Citation style">
-        <button type="button" aria-pressed="true" data-style="apa">APA</button>
-        <button type="button" aria-pressed="false" data-style="mla">MLA</button>
-        <button type="button" aria-pressed="false" data-style="chicago">Chicago</button>
-        <button type="button" aria-pressed="false" data-style="harvard">Harvard</button>
-        <button type="button" aria-pressed="false" data-style="ieee">IEEE</button>
-        <button type="button" aria-pressed="false" data-style="vancouver">Vancouver</button>
+    <aside class="sidenote reveal"><sup>2</sup> Rendered from the same CSL style definitions used by Zotero and Mendeley.</aside>
+    <div class="cite-lab wide" data-model="cite">
+      <ol class="style-index" aria-label="Citation styles">
+        <li><button type="button" data-style="apa7" aria-pressed="true">APA <small>7th</small></button></li>
+        <li><button type="button" data-style="apa6" aria-pressed="false">APA <small>6th</small></button></li>
+        <li><button type="button" data-style="mla" aria-pressed="false">MLA</button></li>
+        <li><button type="button" data-style="chicago" aria-pressed="false">Chicago</button></li>
+        <li><button type="button" data-style="chicago17" aria-pressed="false">Chicago <small>17th</small></button></li>
+        <li><button type="button" data-style="harvard" aria-pressed="false">Harvard</button></li>
+        <li><button type="button" data-style="elsevier" aria-pressed="false">Elsevier <small>Harvard</small></button></li>
+        <li><button type="button" data-style="sage" aria-pressed="false">SAGE <small>Harvard</small></button></li>
+        <li><button type="button" data-style="turabian" aria-pressed="false">Turabian</button></li>
+        <li><button type="button" data-style="asa" aria-pressed="false">ASA</button></li>
+        <li><button type="button" data-style="apsa" aria-pressed="false">APSA</button></li>
+        <li><button type="button" data-style="ieee" aria-pressed="false">IEEE</button></li>
+        <li><button type="button" data-style="acm" aria-pressed="false">ACM</button></li>
+        <li><button type="button" data-style="cse" aria-pressed="false">CSE</button></li>
+        <li><button type="button" data-style="vancouver" aria-pressed="false">Vancouver</button></li>
+        <li><button type="button" data-style="springer" aria-pressed="false">Springer</button></li>
+      </ol>
+      <div class="stage">
+        <article class="paper">
+          <p class="body">Revolution, for Hobsbawm, was never a single event but a long remaking of the world <span class="cite" data-slot="cite">(Hobsbawm, 1962, p. 74)</span>, and its consequences outlived every regime that tried to contain them.</p>
+          <p class="refs-label" data-slot="label">References</p>
+          <p class="ref" data-slot="ref">Hobsbawm, E. (1962). <i>The age of revolution: 1789–1848</i>. Weidenfeld &amp; Nicolson.</p>
+        </article>
+        <p class="caption"><b>Figure 2.</b> One source, sixteen ways. <span class="hint">Pick a style.</span></p>
       </div>
-      <article class="paper">
-        <p class="body">Revolution, for Hobsbawm, was never a single event but a long remaking of the world, <span class="cite" data-slot="cite">(Hobsbawm, 1962, p. 74)</span> and its consequences outlived every regime that tried to contain them.</p>
-        <p class="refs-label">References</p>
-        <p class="ref" data-slot="ref">Hobsbawm, E. (1962). <i>The age of revolution: 1789–1848</i>. Weidenfeld &amp; Nicolson.</p>
+    </div>
+  </section>
+
+  <!-- 3 -->
+  <section class="chapter" id="sources" data-page="3. Sources" aria-labelledby="sources-title">
+    <span class="num" aria-hidden="true">3</span>
+    <div class="text">
+      <h2 id="sources-title" class="lines">Find the source.<br>Cite it in a tap.</h2>
+      <p class="reveal">Search by title, author, DOI or ISBN.<sup class="note-ref">3</sup></p>
+    </div>
+    <aside class="sidenote reveal"><sup>3</sup> Already keep a library? Bring it in from Zotero, Mendeley or EndNote as BibTeX or RIS.</aside>
+    <figure class="fig wide">
+      <div class="device reveal"><img src="media/find-online.jpg" srcset="media/find-online-small.jpg 1200w, media/find-online.jpg 2400w" sizes="(max-width: 1100px) 94vw, 1080px" width="2400" height="1472" alt="EssayKraft’s Find Online search showing results for Antigone, with saved references in the sidebar" loading="lazy"></div>
+      <figcaption class="reveal"><b>Figure 3.</b> Find Online, looking for Antigone.</figcaption>
+    </figure>
+  </section>
+
+  <!-- 4 -->
+  <section class="chapter night" id="authorship" data-page="4. Authorship" aria-labelledby="auth-title">
+    <span class="num" aria-hidden="true">4</span>
+    <div class="text">
+      <h2 id="auth-title" class="lines">Proof the work<br>is <em>yours.</em></h2>
+      <p class="reveal">A private record of how each document was written. It stays on your device unless you choose to share it.<sup class="note-ref">4</sup></p>
+    </div>
+    <aside class="sidenote reveal"><sup>4</sup> Hand it in with the essay, or as its own PDF. Turn it off any time in Settings.</aside>
+    <figure class="fig wide">
+      <article class="report" data-model="record" aria-label="An example writing record">
+        <header class="report-head">
+          <span>Writing Record</span>
+          <span class="intact"><svg aria-hidden="true"><use href="#i-check"/></svg>Intact</span>
+        </header>
+        <dl class="overview">
+          <div><dt>Sessions</dt><dd data-count="12">12</dd></div>
+          <div><dt>Words typed</dt><dd data-count="2486">2,486</dd></div>
+          <div><dt>Words pasted</dt><dd data-count="38">38</dd></div>
+          <div><dt>Time writing</dt><dd>9h 41m</dd></div>
+        </dl>
+        <h3>Edit history</h3>
+        <ol class="history">
+          <li class="day">Monday 6 October</li>
+          <li><time>19:02</time><span>Session began</span></li>
+          <li><time>19:03</time><span>Typed 412 words</span><i style="--w:.42"></i></li>
+          <li class="flag"><time>19:31</time><span>Pasted 38 words</span><em>Flagged</em></li>
+          <li><time>19:34</time><span>Typed 521 words</span><i style="--w:.53"></i></li>
+          <li><time>20:06</time><span>Session ended</span></li>
+          <li class="day">Tuesday 7 October</li>
+          <li><time>18:40</time><span>Session began</span></li>
+          <li><time>18:41</time><span>Typed 690 words</span><i style="--w:.7"></i></li>
+          <li><time>19:52</time><span>Typed 318 words</span><i style="--w:.32"></i></li>
+          <li class="more"><span>8 more sessions</span></li>
+        </ol>
       </article>
-    </div>
-    <div class="marquee" aria-label="All sixteen citation styles">
-      <div class="track">
-        <span>APA 7th</span><span>APA 6th</span><span>MLA</span><span>Chicago</span><span>Chicago 17th</span><span>Harvard</span><span>Elsevier Harvard</span><span>SAGE Harvard</span><span>Turabian</span><span>ASA</span><span>APSA</span><span>IEEE</span><span>ACM</span><span>CSE</span><span>Vancouver</span><span>Springer</span>
-        <span aria-hidden="true">APA 7th</span><span aria-hidden="true">APA 6th</span><span aria-hidden="true">MLA</span><span aria-hidden="true">Chicago</span><span aria-hidden="true">Chicago 17th</span><span aria-hidden="true">Harvard</span><span aria-hidden="true">Elsevier Harvard</span><span aria-hidden="true">SAGE Harvard</span><span aria-hidden="true">Turabian</span><span aria-hidden="true">ASA</span><span aria-hidden="true">APSA</span><span aria-hidden="true">IEEE</span><span aria-hidden="true">ACM</span><span aria-hidden="true">CSE</span><span aria-hidden="true">Vancouver</span><span aria-hidden="true">Springer</span>
-      </div>
-    </div>
-  </section>
-
-  <section class="feature split" id="sources" aria-labelledby="sources-title">
-    <div class="head reveal">
-      <p class="mark"><sup>2</sup> Sources</p>
-      <h2 id="sources-title">Find it.<br><em>Cite it.</em></h2>
-      <p>Search by title, author, DOI or ISBN. Or bring your library from Zotero, Mendeley and EndNote.</p>
-    </div>
-    <figure class="device reveal">
-      <img src="media/find-online.jpg" srcset="media/find-online-small.jpg 1200w, media/find-online.jpg 2400w" sizes="(max-width: 900px) 94vw, 720px" width="2400" height="1472" alt="EssayKraft’s Find Online search showing results for Antigone, with saved references in the sidebar" loading="lazy">
+      <figcaption class="reveal"><b>Figure 4.</b> A writing record, ready to hand in.</figcaption>
     </figure>
   </section>
 
-  <section class="feature dark" id="authorship" aria-labelledby="auth-title">
-    <div class="head reveal">
-      <p class="mark"><sup>3</sup> Authorship</p>
-      <h2 id="auth-title">Proof the work<br><em>is yours.</em></h2>
-      <p>A private record of how each document was written. Share it only if you choose.</p>
+  <!-- 5 -->
+  <section class="chapter" id="targets" data-page="5. Deadlines" aria-labelledby="target-title">
+    <span class="num" aria-hidden="true">5</span>
+    <div class="text">
+      <h2 id="target-title" class="lines">Know where<br>you stand.</h2>
+      <p class="reveal">Set a word target and a due date. Watch the bar fill as you write.</p>
     </div>
-    <div class="record reveal" data-model="record" aria-label="An example writing record">
-      <div class="record-top">
-        <span>Writing record</span>
-        <span class="seal"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M7.8 12.3l2.8 2.8 5.6-6"/></svg>Verified</span>
+    <figure class="fig">
+      <div class="typer reveal" data-model="typer">
+        <div class="typer-head">
+          <span class="due">Due Friday</span>
+          <span class="tally"><b data-words>0</b> / 40 words</span>
+        </div>
+        <div class="meter" aria-hidden="true"><b></b></div>
+        <label class="sr" for="try">Try typing here</label>
+        <textarea id="try" rows="4" spellcheck="true" placeholder="Click here and start typing. Anything at all."></textarea>
+        <p class="done-note" aria-live="polite"></p>
       </div>
-      <div class="sessions" aria-hidden="true">
-        <i style="--h:.42"></i><i style="--h:.7"></i><i style="--h:.3"></i><i style="--h:.86"></i><i style="--h:.55"></i><i style="--h:.94"></i><i class="paste" style="--h:.12"></i><i style="--h:.64"></i><i style="--h:.78"></i><i style="--h:.38"></i><i style="--h:1"></i><i style="--h:.6"></i>
-      </div>
-      <dl class="stats">
-        <div><dt>Typed</dt><dd><span data-count="94">94</span>%</dd></div>
-        <div><dt>Pasted</dt><dd><span data-count="6">6</span>%</dd></div>
-        <div><dt>Sessions</dt><dd><span data-count="12">12</span></dd></div>
-        <div><dt>Words</dt><dd><span data-count="2486" data-format="thousands">2,486</span></dd></div>
-      </dl>
+      <figcaption class="reveal"><b>Figure 5.</b> Go on. This one is yours.</figcaption>
+    </figure>
+  </section>
+
+  <!-- Index -->
+  <section class="index-page" id="index" data-page="Index" aria-labelledby="index-title">
+    <h2 id="index-title" class="lines">Index</h2>
+    <div class="index-cols reveal">
+      <div class="group"><h3>A</h3>
+        <p>Accounts, <i>none</i></p>
+        <p>Authorship record, <a href="#authorship">4</a></p></div>
+      <div class="group"><h3>B</h3>
+        <p>Bibliographies, automatic, <a href="#citations">2</a></p>
+        <p>BibTeX and RIS, <a href="#sources">3</a></p></div>
+      <div class="group"><h3>C</h3>
+        <p>Citations, in sixteen styles, <a href="#citations">2</a></p></div>
+      <div class="group"><h3>D</h3>
+        <p>Dark mode, <i>see</i> Midnight Mode</p>
+        <p>Due dates, <a href="#targets">5</a></p></div>
+      <div class="group"><h3>E</h3>
+        <p>Export, to PDF, Word and RTF, <a href="#q-export">A.2</a></p></div>
+      <div class="group"><h3>F</h3>
+        <p>Find Online, <a href="#sources">3</a></p>
+        <p>Focus mode, <i>one shortcut away</i></p>
+        <p>Footnotes and endnotes, <a href="#pages">1</a></p></div>
+      <div class="group"><h3>M</h3>
+        <p>Markdown, <i>per document</i></p>
+        <p>Midnight Mode, <button type="button" class="linkish" data-midnight-toggle><i>try it</i></button></p></div>
+      <div class="group"><h3>P</h3>
+        <p>Pages, real, <a href="#pages">1</a></p>
+        <p>Privacy, <a href="#q-stored">A.1</a></p></div>
+      <div class="group"><h3>S</h3>
+        <p>Subscriptions, <i>none</i></p></div>
+      <div class="group"><h3>T</h3>
+        <p>Templates, <i>your own</i></p>
+        <p>Title pages, <a href="#pages">1</a></p></div>
+      <div class="group"><h3>W</h3>
+        <p>Word targets, <a href="#targets">5</a></p></div>
+      <div class="group"><h3>Z</h3>
+        <p>Zotero, <i>see</i> BibTeX and RIS</p></div>
     </div>
   </section>
 
-  <section class="feature" id="targets" aria-labelledby="target-title">
-    <div class="head reveal">
-      <p class="mark"><sup>4</sup> Deadlines</p>
-      <h2 id="target-title">Know where<br><em>you stand.</em></h2>
-      <p>Set a word target and a due date. Watch it fill as you write.</p>
-    </div>
-    <div class="target reveal" data-model="target">
-      <div class="target-row">
-        <span class="count"><span data-words>1,850</span> <small>of 2,500 words</small></span>
-        <span class="due">Due Friday</span>
-      </div>
-      <div class="meter" aria-hidden="true"><b></b></div>
-    </div>
+  <!-- Epigraph -->
+  <section class="epigraph" data-page="Price" aria-label="Price">
+    <blockquote>
+      <p class="lines big">Buy once.<br>Keep it forever.</p>
+      <footer class="reveal">The pricing page, in full</footer>
+    </blockquote>
   </section>
 
-  <section class="more" aria-labelledby="more-title">
-    <h2 id="more-title" class="reveal">And everything else<br><em>an essay needs.</em></h2>
-    <ul class="grid">
-      <li class="reveal"><svg><use href="#i-hash"/></svg><b>Markdown</b><span>Or rich text, per document.</span></li>
-      <li class="reveal"><svg><use href="#i-note"/></svg><b>Footnotes</b><span>And endnotes, numbered for you.</span></li>
-      <li class="reveal"><svg><use href="#i-title"/></svg><b>Title pages</b><span>Headers, footers, page numbers.</span></li>
-      <li class="reveal"><svg><use href="#i-template"/></svg><b>Templates</b><span>Start the next one from the last.</span></li>
-      <li class="reveal"><svg><use href="#i-focus"/></svg><b>Focus mode</b><span>Just you and the page.</span></li>
-      <li class="reveal"><svg><use href="#i-moon"/></svg><b>Midnight Mode</b><span>True black. White pages.</span></li>
-      <li class="reveal"><svg><use href="#i-import"/></svg><b>BibTeX and RIS</b><span>In and out, in one click.</span></li>
-      <li class="reveal"><svg><use href="#i-export"/></svg><b>Export</b><span>PDF, Word and RTF.</span></li>
-    </ul>
-  </section>
-
-  <section class="price" aria-labelledby="price-title">
-    <h2 id="price-title" class="reveal">Buy once.<br><em>Keep it forever.</em></h2>
-    <p class="reveal">No accounts. No subscriptions. No tracking.<br>Your work stays on your device.</p>
-  </section>
-
-  <section class="questions" aria-labelledby="questions-title">
-    <h2 id="questions-title" class="reveal">Questions</h2>
-    <details class="reveal"><summary>Where are my documents stored?</summary><p>On your Mac or iPad. There’s no account and no cloud requirement.</p></details>
-    <details class="reveal"><summary>Which formats can I export?</summary><p>PDF, Word (.docx) and RTF. You can also print, and import .docx and .rtf files.</p></details>
-    <details class="reveal"><summary>Does it need the internet?</summary><p>Only for Find Online, which looks up a source by title, author, DOI or ISBN. Everything else works offline.</p></details>
-    <details class="reveal"><summary>Can I bring my references with me?</summary><p>Yes. Import BibTeX or RIS from Zotero, Mendeley, EndNote or journal sites, and export them back out.</p></details>
+  <!-- Appendix -->
+  <section class="appendix" id="questions" data-page="Appendix A" aria-labelledby="questions-title">
+    <h2 id="questions-title" class="lines">Appendix A.<br><em>Questions</em></h2>
+    <details class="reveal" id="q-stored"><summary><span>A.1</span>Where are my documents stored?</summary><p>On your Mac or iPad. There’s no account and no cloud requirement.</p></details>
+    <details class="reveal" id="q-export"><summary><span>A.2</span>Which formats can I export?</summary><p>PDF, Word (.docx) and RTF. You can also print, and import .docx and .rtf files.</p></details>
+    <details class="reveal"><summary><span>A.3</span>Does it need the internet?</summary><p>Only for Find Online. Everything else works offline.</p></details>
+    <details class="reveal"><summary><span>A.4</span>Is there a subscription?</summary><p>No. One purchase and it’s yours.</p></details>
     <p class="more-help reveal">Anything else? <a href="support.html">Visit support</a>.</p>
   </section>
 
-  <section class="cta" aria-labelledby="cta-title">
-    <img class="reveal" src="icon.png" width="112" height="112" alt="">
-    <h2 id="cta-title" class="reveal">EssayKraft</h2>
-    <p class="reveal">For Mac and iPad.</p>
-    <a class="button dark reveal" href="https://apps.apple.com/app/id6789774290"><svg class="glyph"><use href="#i-apple"/></svg>Download on the App Store</a>
+  <!-- References -->
+  <section class="references" id="download" data-page="References" aria-labelledby="refs-title">
+    <h2 id="refs-title" class="lines">References</h2>
+    <ol class="biblio reveal">
+      <li>Page, N. (2026). <i>EssayKraft</i> (Version 2.2) [Computer software]. App Store. <a href="https://apps.apple.com/app/id6789774290">https://apps.apple.com/app/id6789774290</a></li>
+      <li>Page, N. (2026). <i>Sonetia</i> [Computer software]. For novelists. <a href="https://sonetia.co.uk">https://sonetia.co.uk</a></li>
+    </ol>
+    <div class="closing reveal">
+      <img src="icon.png" width="88" height="88" alt="">
+      <a class="button" href="https://apps.apple.com/app/id6789774290"><svg class="glyph"><use href="#i-apple"/></svg>Download on the App Store</a>
+      <p>For Mac and iPad. macOS and iPadOS 26.</p>
+    </div>
   </section>
 </main>
 
 <footer class="foot">
-  <nav aria-label="Footer"><a href="support.html">Support</a><a href="privacy.html">Privacy</a><a href="https://sonetia.co.uk">Sonetia, for novelists</a></nav>
+  <nav aria-label="Footer"><a href="support.html">Support</a><a href="privacy.html">Privacy</a></nav>
   <p>© 2026 Noah Page. Made in the UK.</p>
 </footer>
 </body>

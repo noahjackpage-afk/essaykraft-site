@@ -1,7 +1,10 @@
-// EssayKraft homepage: entrance, reveals and the three small app models.
-// Every model shows its finished state when motion is reduced.
+// EssayKraft homepage: the title page's entrance, headline and scroll reveals,
+// the reading-position dock, Midnight Mode, and the small app models in
+// sections 2, 4 and 5. Everything shows its finished state when motion is reduced.
 (() => {
+  const root = document.documentElement;
   const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const canObserve = 'IntersectionObserver' in window;
 
   // The wordmark arrives a letter at a time.
   const letters = document.querySelector('.letters');
@@ -10,21 +13,17 @@
     letters.classList.add('ready');
   }
 
-  // The bar gains its glass once the page moves.
-  // Over the dark band it turns dark too.
-  const bar = document.querySelector('.bar');
-  const darks = [...document.querySelectorAll('.dark')];
-  const onScroll = () => {
-    bar.classList.toggle('scrolled', scrollY > 12);
-    bar.classList.toggle('on-dark', darks.some(d => { const r = d.getBoundingClientRect(); return r.top <= 30 && r.bottom >= 30; }));
-  };
-  addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
+  // Headlines are split into lines so each can rise out of its own slot.
+  document.querySelectorAll('.lines').forEach(h => {
+    h.innerHTML = h.innerHTML.split(/<br\s*\/?>/i)
+      .map((line, i) => `<span class="ln"><span style="--l:${i}">${line.trim()}</span></span>`).join('');
+    h.classList.add('reveal-lines');
+  });
 
   // Reveals, staggered among siblings that arrive together.
-  const reveals = document.querySelectorAll('.reveal');
-  if (still || !('IntersectionObserver' in window)) {
-    reveals.forEach(el => el.classList.add('in'));
+  const revealables = document.querySelectorAll('.reveal, .lines');
+  if (still || !canObserve) {
+    revealables.forEach(el => el.classList.add('in'));
   } else {
     const io = new IntersectionObserver(entries => {
       let n = 0;
@@ -35,95 +34,163 @@
         io.unobserve(e.target);
       });
     }, { rootMargin: '0px 0px -8% 0px', threshold: .12 });
-    reveals.forEach(el => io.observe(el));
+    revealables.forEach(el => io.observe(el));
   }
 
-  // Runs `start` the first time an element is mostly on screen.
-  const whenSeen = (el, start, threshold = .45) => {
+  // Runs `start` once, the first time an element is well on screen.
+  const whenSeen = (el, start, threshold = .35) => {
     if (!el) return;
-    if (!('IntersectionObserver' in window)) return start();
-    const io = new IntersectionObserver(([e]) => {
-      if (e.isIntersecting) { io.disconnect(); start(); }
-    }, { threshold });
+    if (!canObserve) return start();
+    const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) { io.disconnect(); start(); } }, { threshold });
     io.observe(el);
   };
 
-  // Citations: the same source in six styles.
-  const STYLES = {
-    apa: ['(Hobsbawm, 1962, p. 74)', 'Hobsbawm, E. (1962). <i>The age of revolution: 1789–1848</i>. Weidenfeld &amp; Nicolson.', 'References'],
-    mla: ['(Hobsbawm 74)', 'Hobsbawm, Eric. <i>The Age of Revolution: 1789–1848</i>. Weidenfeld &amp; Nicolson, 1962.', 'Works Cited'],
-    chicago: ['(Hobsbawm 1962, 74)', 'Hobsbawm, Eric. 1962. <i>The Age of Revolution: 1789–1848</i>. London: Weidenfeld &amp; Nicolson.', 'References'],
-    harvard: ['(Hobsbawm, 1962, p. 74)', 'Hobsbawm, E. (1962) <i>The age of revolution: 1789–1848</i>. London: Weidenfeld &amp; Nicolson.', 'Reference list'],
-    ieee: ['[1]', '[1] E. Hobsbawm, <i>The Age of Revolution: 1789–1848</i>. London, U.K.: Weidenfeld &amp; Nicolson, 1962.', 'References'],
-    vancouver: ['(1)', '1. Hobsbawm E. The age of revolution: 1789–1848. London: Weidenfeld &amp; Nicolson; 1962.', 'References'],
+  // The bar gains glass once the page moves, and goes dark over the dark band.
+  // The dock appears after the title page and names the part you're reading.
+  const bar = document.querySelector('.bar');
+  const dock = document.querySelector('.dock');
+  const where = dock.querySelector('[data-where]');
+  const nights = [...document.querySelectorAll('.night')];
+  const pages = [...document.querySelectorAll('[data-page]')];
+  let current = where.textContent;
+  const setWhere = label => {
+    if (label === current) return;
+    current = label;
+    if (still) { where.textContent = label; return; }
+    where.classList.add('out');
+    setTimeout(() => { where.textContent = label; where.classList.remove('out'); }, 180);
   };
-  const cite = document.querySelector('[data-model="cite"]');
-  if (cite) {
-    const buttons = [...cite.querySelectorAll('button')];
-    const slotCite = cite.querySelector('[data-slot="cite"]');
-    const slotRef = cite.querySelector('[data-slot="ref"]');
-    const label = cite.querySelector('.refs-label');
-    let index = 0, timer = null, visible = false, userTook = false;
+  const onScroll = () => {
+    bar.classList.toggle('scrolled', scrollY > 12);
+    bar.classList.toggle('on-dark', !root.hasAttribute('data-midnight') && nights.some(d => { const r = d.getBoundingClientRect(); return r.top <= 29 && r.bottom >= 29; }));
+    dock.classList.toggle('shown', scrollY > innerHeight * .5);
+    const mid = innerHeight * .45;
+    let label = pages[0].dataset.page;
+    pages.forEach(p => { if (p.getBoundingClientRect().top <= mid) label = p.dataset.page; });
+    setWhere(label);
+  };
+  addEventListener('scroll', onScroll, { passive: true });
+  addEventListener('resize', onScroll);
+  onScroll();
+
+  // Midnight Mode: true black everywhere except the pages, which stay white.
+  const toggles = document.querySelectorAll('[data-midnight-toggle]');
+  const themeColor = document.querySelector('meta[name="theme-color"]');
+  const reflect = () => {
+    const on = root.hasAttribute('data-midnight');
+    document.querySelectorAll('.midnight').forEach(b => b.setAttribute('aria-pressed', String(on)));
+    themeColor.content = on ? '#000000' : '#f1f0ec';
+  };
+  const flip = () => {
+    root.toggleAttribute('data-midnight');
+    try { localStorage.setItem('ek-midnight', root.hasAttribute('data-midnight') ? '1' : '0'); } catch (e) {}
+    reflect();
+    onScroll();
+  };
+  toggles.forEach(t => t.addEventListener('click', ev => {
+    if (still || !document.startViewTransition) return flip();
+    const r = t.getBoundingClientRect();
+    const x = ev.clientX || r.left + r.width / 2, y = ev.clientY || r.top + r.height / 2;
+    const radius = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
+    document.startViewTransition(flip).ready.then(() => {
+      root.animate({ clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${radius}px at ${x}px ${y}px)`] },
+        { duration: 750, easing: 'cubic-bezier(.2, .7, .2, 1)', pseudoElement: '::view-transition-new(root)' });
+    });
+  }));
+  reflect();
+
+  // 2. One source in all sixteen styles: [in-text, reference, list heading].
+  const STYLES = {
+    apa7: ['(Hobsbawm, 1962, p. 74)', 'Hobsbawm, E. (1962). <i>The age of revolution: 1789–1848</i>. Weidenfeld &amp; Nicolson.', 'References'],
+    apa6: ['(Hobsbawm, 1962, p. 74)', 'Hobsbawm, E. (1962). <i>The age of revolution: 1789–1848</i>. London, England: Weidenfeld &amp; Nicolson.', 'References'],
+    mla: ['(Hobsbawm 74)', 'Hobsbawm, Eric. <i>The Age of Revolution: 1789–1848</i>. Weidenfeld &amp; Nicolson, 1962.', 'Works Cited'],
+    chicago: ['(Hobsbawm 1962, 74)', 'Hobsbawm, Eric. 1962. <i>The Age of Revolution: 1789–1848</i>. Weidenfeld &amp; Nicolson.', 'References'],
+    chicago17: ['(Hobsbawm 1962, 74)', 'Hobsbawm, Eric. 1962. <i>The Age of Revolution: 1789–1848</i>. London: Weidenfeld &amp; Nicolson.', 'References'],
+    harvard: ['(Hobsbawm, 1962, p. 74)', 'Hobsbawm, E. (1962) <i>The age of revolution: 1789–1848</i>. London: Weidenfeld &amp; Nicolson.', 'Reference list'],
+    elsevier: ['(Hobsbawm, 1962, p. 74)', 'Hobsbawm, E., 1962. The Age of Revolution: 1789–1848. Weidenfeld &amp; Nicolson, London.', 'References'],
+    sage: ['(Hobsbawm, 1962: 74)', 'Hobsbawm E (1962) <i>The Age of Revolution: 1789–1848</i>. London: Weidenfeld &amp; Nicolson.', 'References'],
+    turabian: ['(Hobsbawm 1962, 74)', 'Hobsbawm, Eric. 1962. <i>The Age of Revolution: 1789–1848</i>. London: Weidenfeld &amp; Nicolson.', 'Bibliography'],
+    asa: ['(Hobsbawm 1962:74)', 'Hobsbawm, Eric. 1962. <i>The Age of Revolution: 1789–1848</i>. London: Weidenfeld &amp; Nicolson.', 'References'],
+    apsa: ['(Hobsbawm 1962, 74)', 'Hobsbawm, Eric. 1962. <i>The Age of Revolution: 1789–1848</i>. London: Weidenfeld &amp; Nicolson.', 'References'],
+    ieee: ['[1]', '[1] E. Hobsbawm, <i>The Age of Revolution: 1789–1848</i>. London, U.K.: Weidenfeld &amp; Nicolson, 1962.', 'References'],
+    acm: ['[1]', '[1] Eric Hobsbawm. 1962. <i>The Age of Revolution: 1789–1848</i>. Weidenfeld &amp; Nicolson, London.', 'References'],
+    cse: ['<sup>1</sup>', '1. Hobsbawm E. The age of revolution: 1789–1848. London: Weidenfeld &amp; Nicolson; 1962.', 'References'],
+    vancouver: ['(1)', '1. Hobsbawm E. The age of revolution: 1789–1848. London: Weidenfeld &amp; Nicolson; 1962.', 'References'],
+    springer: ['(Hobsbawm 1962, p 74)', 'Hobsbawm E (1962) The age of revolution: 1789–1848. Weidenfeld &amp; Nicolson, London', 'References'],
+  };
+  const lab = document.querySelector('[data-model="cite"]');
+  if (lab) {
+    const buttons = [...lab.querySelectorAll('[data-style]')];
+    const slots = ['cite', 'ref', 'label'].map(k => lab.querySelector(`[data-slot="${k}"]`));
+    let index = 0, timer = null, visible = false, userTook = false, shown = 'apa7', pending = null;
 
     const show = key => {
+      if (key === shown) return;
+      shown = key;
       buttons.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.style === key)));
-      const [c, r, l] = STYLES[key];
-      if (still) { slotCite.textContent = c; slotRef.innerHTML = r; label.textContent = l; return; }
-      [slotCite, slotRef].forEach(s => s.classList.add('swap'));
-      setTimeout(() => {
-        slotCite.textContent = c; slotRef.innerHTML = r; label.textContent = l;
-        [slotCite, slotRef].forEach(s => s.classList.remove('swap'));
-      }, 380);
+      // Only the parts that actually change between styles fade out and back.
+      const changed = slots.filter((s, i) => s.innerHTML !== STYLES[key][i]);
+      const fill = () => STYLES[key].forEach((html, i) => { slots[i].innerHTML = html; });
+      if (still) return fill();
+      changed.forEach(s => s.classList.add('swap'));
+      clearTimeout(pending);
+      pending = setTimeout(() => { fill(); slots.forEach(s => s.classList.remove('swap')); }, 300);
     };
-    const tick = () => { index = (index + 1) % buttons.length; show(buttons[index].dataset.style); };
     const run = () => {
       clearInterval(timer); timer = null;
-      if (!still && !userTook && visible && !document.hidden) timer = setInterval(tick, 2600);
+      if (!still && !userTook && visible && !document.hidden) {
+        timer = setInterval(() => { index = (index + 1) % buttons.length; show(buttons[index].dataset.style); }, 2200);
+      }
     };
-    buttons.forEach((b, i) => b.addEventListener('click', () => { userTook = true; index = i; show(b.dataset.style); run(); }));
-    if ('IntersectionObserver' in window) {
-      new IntersectionObserver(([e]) => { visible = e.isIntersecting; run(); }, { threshold: .5 }).observe(cite);
-    }
+    const take = (b, i) => { userTook = true; index = i; show(b.dataset.style); run(); };
+    const finePointer = matchMedia('(hover: hover) and (pointer: fine)').matches;
+    buttons.forEach((b, i) => {
+      b.addEventListener('click', () => take(b, i));
+      if (finePointer) b.addEventListener('mouseenter', () => take(b, i));
+    });
+    if (canObserve) new IntersectionObserver(([e]) => { visible = e.isIntersecting; run(); }, { threshold: .4 }).observe(lab);
     document.addEventListener('visibilitychange', run);
   }
 
-  // Counts a number up from zero.
-  const countUp = (el, ms) => {
-    const end = Number(el.dataset.count);
-    const fmt = n => el.dataset.format === 'thousands' ? n.toLocaleString('en-GB') : String(n);
-    if (still) { el.textContent = fmt(end); return; }
-    const t0 = performance.now();
-    const step = t => {
-      const k = Math.min(1, (t - t0) / ms);
-      el.textContent = fmt(Math.round(end * (1 - Math.pow(1 - k, 3))));
-      if (k < 1) requestAnimationFrame(step);
-    };
-    requestAnimationFrame(step);
-  };
+  // 4. The writing record fills in line by line, then declares itself intact.
+  const report = document.querySelector('[data-model="record"]');
+  whenSeen(report, () => {
+    const lines = [...report.querySelectorAll('.history li')];
+    lines.forEach((li, i) => { li.style.transitionDelay = `${300 + i * 120}ms`; });
+    report.classList.add('play');
+    report.querySelectorAll('[data-count]').forEach(el => {
+      const end = Number(el.dataset.count);
+      if (still) return;
+      const t0 = performance.now();
+      const step = t => {
+        const k = Math.min(1, (t - t0) / 1600);
+        el.textContent = Math.round(end * (1 - Math.pow(1 - k, 3))).toLocaleString('en-GB');
+        if (k < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    });
+    setTimeout(() => report.classList.add('done'), still ? 0 : 300 + lines.length * 120 + 400);
+  }, .25);
 
-  // Authorship: sessions rise, numbers count, the seal draws.
-  const record = document.querySelector('[data-model="record"]');
-  whenSeen(record, () => {
-    record.classList.add('play');
-    record.querySelectorAll('.sessions i').forEach((bar, i) => { bar.style.transitionDelay = `${i * 60}ms`; });
-    record.querySelectorAll('[data-count]').forEach(el => countUp(el, 1500));
-  });
-
-  // Word target: the count climbs as if someone were writing.
-  const target = document.querySelector('[data-model="target"]');
-  whenSeen(target, () => {
-    const words = target.querySelector('[data-words]');
-    const meter = target.querySelector('.meter b');
-    const goal = 2500, from = 1420, to = 2180;
-    const set = n => { words.textContent = n.toLocaleString('en-GB'); meter.style.setProperty('--p', n / goal); };
-    if (still) return set(to);
-    let n = from;
-    set(n);
-    const write = () => {
-      n = Math.min(to, n + 3 + Math.floor(Math.random() * 9));
-      set(n);
-      if (n < to) setTimeout(write, 24 + Math.random() * 40);
-    };
-    setTimeout(write, 400);
-  });
+  // 5. Type and the target fills. Forty words and it's done.
+  const typer = document.querySelector('[data-model="typer"]');
+  if (typer) {
+    const goal = 40;
+    const area = typer.querySelector('textarea');
+    const count = typer.querySelector('[data-words]');
+    const meter = typer.querySelector('.meter b');
+    const note = typer.querySelector('.done-note');
+    const grow = () => { area.style.height = 'auto'; area.style.height = `${area.scrollHeight}px`; };
+    area.addEventListener('input', () => {
+      const words = area.value.trim() ? area.value.trim().split(/\s+/).length : 0;
+      count.textContent = words.toLocaleString('en-GB');
+      meter.style.setProperty('--p', Math.min(1, words / goal));
+      const done = words >= goal;
+      if (done !== typer.classList.contains('done')) {
+        typer.classList.toggle('done', done);
+        note.textContent = done ? 'Target reached. Hand it in.' : '';
+      }
+      grow();
+    });
+  }
 })();

@@ -10,11 +10,12 @@ GitHub Pages is still on for this repo too, at `noahjackpage-afk.github.io/essay
 
 ## Design
 
-A sibling to sonetia.co.uk, aimed at academic writing: paper, ink and one blue caret taken from the app icon.
+A sibling to sonetia.co.uk, aimed at academic writing. The page is laid out as a paper: a title page and abstract, five numbered sections with figures and margin notes, an index, an epigraph for the price, Appendix A for questions, and a references list that cites the app as the download link.
 
-- Type: Newsreader (Google Fonts) for headlines, the system font for body text.
-- `index.html` and `home.css`: hero wordmark, the editor screenshot that grows as you scroll, then four numbered features (Citations, Sources, Authorship, Deadlines), a grid of smaller features, price, questions and download.
-- `site.js`: the wordmark's entrance, scroll reveals, and three small app models redrawn in HTML: a citation that changes style, a writing record, and a word target. Each one plays only while it's on screen. With reduced motion they show their finished state.
+- Type: Newsreader (Google Fonts) for headlines and the page text, the system font for interface text. One accent: the blue caret from the app icon.
+- `home.css`: tokens at the top. `html[data-midnight]` swaps them for true black. Anything that is a sheet of paper uses the `--sheet-*` tokens and stays white, as in the app.
+- `site.js`: the wordmark's entrance, headlines that rise line by line, scroll reveals, the dock (reading position and the Midnight switch, with a circular View Transition), and three small models: sixteen citation styles on one source, a writing record that fills in, and a page you can type on to fill a 40-word target.
+- Citation examples are hand-set to match each style's usual output for a book. If the app's output differs, change the `STYLES` table in `site.js`.
 - `pages.css`: support, privacy and 404.
 - `media/`: crops of the real iPad App Store screenshots (July 2026). Swap them for fresh Mac screenshots at the same 2400 and 1200 pixel widths.
 - `og.png`: 1200 × 630 social preview, set in New York.
