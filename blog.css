@@ -1,0 +1,83 @@
+/* Blog posts, the blog index and the changelog. Loaded after home.css and pages.css. */
+
+/* Index and changelog headers share the support page's .page h1 and .sub. */
+.kicker { font-size: 14px; color: var(--muted); margin: 0 0 18px; display: flex; flex-wrap: wrap; gap: 4px 10px; }
+.kicker > * + *::before { content: "·"; margin-right: 10px; color: var(--faint); }
+.kicker .cat { color: var(--blue-ink); font-weight: 500; }
+
+/* A post reads like the body of a paper: serif text, numbered sections. */
+.post { counter-reset: section; }
+.post h1 { font-size: clamp(40px, 6.4vw, 68px); line-height: 1; }
+.post .deck { font-family: var(--serif); font-size: clamp(21px, 2.4vw, 25px); line-height: 1.4; color: var(--ink-2); margin: 0 0 40px; text-wrap: pretty; }
+.post .body p, .post .body li { font-family: var(--serif); font-size: 19px; line-height: 1.65; }
+.post .body > h2 { counter-increment: section; }
+.post .body > h2::before { content: counter(section) "."; display: block; font: 500 14px var(--sans); color: var(--blue-ink); letter-spacing: 0; margin-bottom: 8px; }
+.post .body h3 { font-size: 22px; font-weight: 450; letter-spacing: -.01em; margin: 32px 0 6px; }
+.post .body ol, .post .body ul { padding-left: 1.3em; }
+.post .body strong { font-weight: 600; color: var(--ink); }
+
+.byline { display: flex; align-items: center; gap: 12px; font-size: 14px; color: var(--muted); padding: 16px 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); margin-bottom: 44px; }
+.byline img { border-radius: 9px; box-shadow: 0 0 0 1px rgba(0,0,0,.08); }
+.byline b { display: block; color: var(--ink); font-weight: 500; }
+
+/* The short answer, for readers and answer engines in a hurry. */
+.answer { background: var(--sheet); color: var(--sheet-ink); border-radius: 20px; padding: 26px 28px; box-shadow: 0 0 0 1px rgba(0,0,0,.05), 0 24px 50px -32px rgba(20,20,30,.3); margin: 0 0 12px; }
+.answer h2 { font: 600 13px var(--sans); letter-spacing: .06em; text-transform: uppercase; color: var(--sheet-blue); margin: 0 0 10px; }
+.post .answer p { color: var(--sheet-ink); margin: 0; }
+.post .answer p + p { margin-top: 12px; }
+
+/* Comparison table. Scrolls sideways on its own rather than widening the page. */
+.table-wrap { overflow-x: auto; margin: 26px 0 8px; -webkit-overflow-scrolling: touch; }
+.compare { width: 100%; min-width: 520px; border-collapse: collapse; font-size: 15px; line-height: 1.45; }
+.compare th, .compare td { text-align: left; vertical-align: top; padding: 12px 14px 12px 0; border-bottom: 1px solid var(--rule); }
+.compare thead th { font-size: 13px; font-weight: 600; color: var(--muted); border-bottom-color: var(--ink); }
+.compare tbody th { font-weight: 500; color: var(--ink); width: 26%; }
+.compare td { color: var(--ink-2); }
+.table-note { font-size: 13px; color: var(--muted); margin: 0 0 8px; }
+
+.post figure { margin: 36px 0; }
+.post figure img { border-radius: 14px; box-shadow: 0 0 0 1px rgba(0,0,0,.06), 0 30px 60px -36px rgba(20,20,30,.4); }
+.post figcaption { font-size: 14px; color: var(--muted); margin-top: 12px; }
+
+/* Call to action, closing every post. */
+.cta { display: grid; grid-template-columns: auto 1fr; gap: 18px 22px; align-items: center; background: var(--sheet); color: var(--sheet-ink); border-radius: 22px; padding: 28px; margin: 60px 0 0; box-shadow: 0 0 0 1px rgba(0,0,0,.05), 0 30px 60px -36px rgba(20,20,30,.35); }
+.cta img { border-radius: 16px; box-shadow: 0 0 0 1px rgba(0,0,0,.06); }
+.cta h2 { font-size: 26px; margin: 0 0 4px; }
+.post .cta p { font-family: var(--sans); font-size: 15px; color: var(--sheet-muted); margin: 0; }
+.cta .button { grid-column: 1 / -1; justify-self: start; background: #121214; color: #fff; }
+.page .cta a.button { color: #fff; text-decoration: none; }
+
+.related { margin-top: 56px; }
+.related h2 { font: 600 13px var(--sans); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin: 0 0 6px; }
+
+/* The blog index: a list of posts, newest first. */
+.post-list { list-style: none; padding: 0; margin: 0; }
+.page .post-list li { margin: 0; border-top: 1px solid var(--rule); }
+.post-list li:last-child { border-bottom: 1px solid var(--rule); }
+.page .post-list a { display: block; padding: 28px 0; text-decoration: none; color: inherit; }
+.post-list .kicker { margin-bottom: 10px; }
+.post-list h2 { margin: 0 0 8px; transition: color .2s; }
+.post-list a:hover h2 { color: var(--blue-ink); }
+.post-list p { margin: 0; color: var(--ink-2); }
+.post-list .more { display: inline-block; margin-top: 12px; font-size: 15px; color: var(--blue-ink); }
+
+/* Changelog: one release per entry, version and date in the margin. */
+.release { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 0 28px; padding: 36px 0; border-top: 1px solid var(--rule); }
+.release:last-of-type { border-bottom: 1px solid var(--rule); }
+.release header { padding-top: 4px; }
+.page .release h2 { margin: 0; font-size: 34px; line-height: 1; }
+.release time { display: block; font-size: 14px; color: var(--muted); margin-top: 8px; }
+.release .tag { display: inline-block; margin-top: 10px; font-size: 12px; font-weight: 600; color: var(--blue-ink); background: var(--blue-wash); padding: 3px 9px; border-radius: 99px; }
+.release h3 { font: 600 13px var(--sans); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin: 0 0 8px; }
+.release ul + h3 { margin-top: 22px; }
+.release ul { margin: 0; }
+.release li b { color: var(--ink); font-weight: 600; }
+.release > div > p:first-child { margin-top: 0; }
+
+@media (max-width: 560px) {
+  .post .body p, .post .body li { font-size: 18px; }
+  .release { grid-template-columns: minmax(0, 1fr); }
+  .release header { margin-bottom: 18px; display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 14px; }
+  .release time, .release .tag { margin-top: 0; }
+  .cta { grid-template-columns: minmax(0, 1fr); }
+}
